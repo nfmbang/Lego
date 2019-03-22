@@ -21,7 +21,7 @@ public class Register extends Command {
             session.setAttribute("role", user.getRole());
             return user.getRole() + "page";
         } else {
-            throw new LoginSampleException("the two passwords did not match");
+            throw new LoginSampleException("the two passwords did not match.");
         }
     }
 
