@@ -9,16 +9,16 @@ package Domain;
  *
  * @author nille
  */
-public class Order {
+public class OrderDTO {
 
-    private int height;
-    private int width;
-    private int length;
+    private int height, width, length;
+    private final String[] desiredBricks;
 
-    public Order(int length, int width, int height) {
+    public OrderDTO(int length, int width, int height, String[] desiredBricks) {
         this.height = height;
         this.width = width;
         this.length = length;
+        this.desiredBricks = desiredBricks;
     }
 
     public int getLength() {
@@ -45,4 +45,7 @@ public class Order {
         this.width = width;
     }
 
+    public String[] getBricks() {
+        return desiredBricks;
+    }
 }
