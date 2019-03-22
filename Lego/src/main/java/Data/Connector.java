@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class Connector {
 
-    private static final String URL = "jdbc:mysql://207.154.240.48:3306/LegoDB";
+    private static final String URL = "jdbc:mysql://207.154.240.48:3306/useradmin";
     private static final String USERNAME = "guest";
     private static final String PASSWORD = "1234";
 
@@ -23,7 +23,7 @@ public class Connector {
 
     public static Connection connection() throws ClassNotFoundException, SQLException {
         if (singleton == null) {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             singleton = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         }
         return singleton;
