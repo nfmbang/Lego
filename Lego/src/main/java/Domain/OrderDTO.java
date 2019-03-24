@@ -11,14 +11,22 @@ package Domain;
  */
 public class OrderDTO {
 
-    private int height, width, length;
-    private final String[] desiredBricks;
+    private int height, width, length, customerNo;
+    // private final String[] desiredBricks;
 
-    public OrderDTO(int length, int width, int height, String[] desiredBricks) {
+    public int getCustomerNo() {
+        return customerNo;
+    }
+
+    public void setCustomerNo(int customerNo) {
+        this.customerNo = customerNo;
+    }
+
+    public OrderDTO(int length, int width, int height) {
         this.height = height;
         this.width = width;
         this.length = length;
-        this.desiredBricks = desiredBricks;
+        //this.desiredBricks = desiredBricks;
     }
 
     public int getLength() {
@@ -45,7 +53,8 @@ public class OrderDTO {
         this.width = width;
     }
 
-    public String[] getBricks() {
+    /*   public String[] getBricks() {
         return desiredBricks;
     }
+     */
 }

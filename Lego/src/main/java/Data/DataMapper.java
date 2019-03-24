@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain.Bricks;
+package Data;
 
 /**
  *
  * @author nille
  */
-public class A extends Domain.LegoBrick {
+public class DataMapper {
 
-    public A() {
-        super(1, 2, 4);
-    }
 }
