@@ -20,3 +20,14 @@ INSERT INTO `user` VALUES
 (3,'robin@somewhere.com','batman','employee');
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `orderId` int(11) NOT NULL AUTO_INCREMENT,
+  `customerId` int(11) NOT NULL,
+  `length` int NOT NULL,
+  `height` int NOT NULL,
+  `width` int NOT NULL,
+  `date` date,
+  PRIMARY KEY (`orderId`),
+  FOREIGN KEY (`customerId`) REFERENCES `user`(`id`)
+)

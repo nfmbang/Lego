@@ -1,6 +1,6 @@
 package Logic;
 
-import Data.UserMapper;
+import Data.Controller;
 
 /**
  * The purpose of LogicFacade is to...
@@ -9,13 +9,15 @@ import Data.UserMapper;
  */
 public class LogicFacade {
 
+    static Controller dataController = new Controller();
+
     public static User login(String email, String password) throws LoginSampleException {
-        return UserMapper.login(email, password);
+        return dataController.login(email, password);
     }
 
-    public static User createUser(String email, String password) throws LoginSampleException {
+    public User createUser(String email, String password) throws LoginSampleException {
         User user = new User(email, password, "customer");
-        UserMapper.createUser(user);
+        dataController.createUser(user);
         return user;
     }
 

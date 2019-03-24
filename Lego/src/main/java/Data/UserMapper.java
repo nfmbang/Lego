@@ -13,9 +13,9 @@ import java.sql.Statement;
  *
  * @author kasper
  */
-public class UserMapper {
+class UserMapper {
 
-    public static void createUser(User user) throws LoginSampleException {
+    static void createUser(User user) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
@@ -33,7 +33,7 @@ public class UserMapper {
         }
     }
 
-    public static User login(String email, String password) throws LoginSampleException {
+    static User login(String email, String password) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT id, role FROM user "

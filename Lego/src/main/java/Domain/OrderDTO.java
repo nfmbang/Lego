@@ -5,14 +5,27 @@
  */
 package Domain;
 
+//import java.sql.Date;
+import java.util.Date;
+
 /**
  *
  * @author nille
  */
 public class OrderDTO {
 
-    private int height, width, length, customerNo;
+    private int height, width, length, customerNo, orderId;
+    private Date date;
     // private final String[] desiredBricks;
+
+    public OrderDTO(int customerNo, int length, int width, int height) {
+        this.customerNo = customerNo;
+        this.height = height;
+        this.width = width;
+        this.length = length;
+        date = new Date();
+        //this.desiredBricks = desiredBricks;
+    }
 
     public int getCustomerNo() {
         return customerNo;
@@ -22,11 +35,20 @@ public class OrderDTO {
         this.customerNo = customerNo;
     }
 
-    public OrderDTO(int length, int width, int height) {
-        this.height = height;
-        this.width = width;
-        this.length = length;
-        //this.desiredBricks = desiredBricks;
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getLength() {

@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author kasper
  */
-public class Connector {
+class Connector {
 
     private static final String URL = "jdbc:mysql://207.154.240.48:3306/useradmin";
     private static final String USERNAME = "guest";
@@ -18,11 +18,11 @@ public class Connector {
 
     private static Connection singleton;
 
-    public static void setConnection(Connection con) {
+    static void setConnection(Connection con) {
         singleton = con;
     }
 
-    public static Connection connection() throws ClassNotFoundException, SQLException {
+    static Connection connection() throws ClassNotFoundException, SQLException {
         if (singleton == null) {
             Class.forName(DRIVER);
 
