@@ -1,6 +1,8 @@
 package Logic;
 
 import Data.Controller;
+import Data.DataException;
+import Domain.OrderDTO;
 
 /**
  * The purpose of LogicFacade is to...
@@ -21,4 +23,11 @@ public class LogicFacade {
         return user;
     }
 
+    public static void addOrder(OrderDTO order) throws DataException {
+        dataController.addOrder(order);
+    }
+
+    public static OrderDTO getOrder(int orderId) throws DataException {
+        return dataController.getOrder(orderId);
+    }
 }

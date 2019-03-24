@@ -13,6 +13,10 @@
     </head>
     <body>
         <h1>Hello <%=request.getParameter( "email" )%> </h1>
-        You are now logged in as a customer of our wonderful site.
+        
+        <form name="shop" action="FrontController" method="POST">
+            <input type="hidden" name="command" value="shop">           
+            <input  type="submit" value="shop">
+        </form>
     </body>
 </html>

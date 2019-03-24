@@ -31,3 +31,4 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderId`),
   FOREIGN KEY (`customerId`) REFERENCES `user`(`id`)
 )
+
