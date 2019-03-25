@@ -24,6 +24,12 @@
                 <jsp:param name="BoM" value=""/>
             </jsp:include>                
                 
+                    <% String error = (String) request.getAttribute( "error");
+           if ( error != null) { 
+               out.println("<H2>Error!!</h2>");
+               out.println(error);
+           }
+        %>
         </center
     </body>
 </html>

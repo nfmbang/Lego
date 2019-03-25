@@ -55,12 +55,18 @@ public class FrontController extends HttpServlet {
         return LogicFacade.createUser(email, password1);
     }
 
-    static void addOrder(OrderDTO order) throws DataException {
+    public static void addOrder(OrderDTO order) throws DataException {
         LogicFacade.addOrder(order);
     }
 
-    static ArrayList<BillDTO> getHistory(int id) {
-        return LogicFacade.getHistory(id);
+    public static ArrayList<BillDTO> getHistory(int id) {
+        ArrayList<BillDTO> hist = new ArrayList<>();
+        try {
+            hist = LogicFacade.getHistory(id);
+        } catch (DataException E) {
+            E.printStackTrace();
+        }
+        return hist;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

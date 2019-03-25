@@ -39,7 +39,10 @@ class DataMapper {
             ids.next();
             int id = ids.getInt(1);
             order.setOrderId(id);
-            addBill(new BillDTO(order));
+
+            BillDTO tempB = new BillDTO(order);
+            tempB.calcBill();
+            addBill(tempB);
         } catch (SQLException | ClassNotFoundException ex) {
             throw new DataException(ex.getMessage());
         }
@@ -49,7 +52,7 @@ class DataMapper {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT * FROM orders "
-                    + "WHERE id=?";
+                    + "WHERE orderId=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderId);
             ResultSet rs = ps.executeQuery();
@@ -77,12 +80,11 @@ class DataMapper {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO bills (orderId, 2x4, 2x2, 1x2) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            Map billData = bill.getBill();
 
             ps.setInt(1, bill.getOrder().getOrderId());
-            ps.setInt(2, (Integer) billData.get("2x4"));
-            ps.setInt(3, (Integer) billData.get("2x2"));
-            ps.setInt(4, (Integer) billData.get("2x1"));
+            ps.setInt(2, bill.getA());
+            ps.setInt(3, (bill.getB()));
+            ps.setInt(4, bill.getC());
             ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -129,8 +131,8 @@ class DataMapper {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT bills.* FROM orders join bills "
-                    + "on orders.customerId=bills.customerId "
-                    + "WHERE customerId = ?";
+                    + "on orders.orderId=bills.orderId "
+                    + "WHERE customerId=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, customerId);
             ResultSet rs = ps.executeQuery();
@@ -150,9 +152,19 @@ class DataMapper {
     }
 
     public static void main(String[] args) {
+
+        /**
+         * ArrayList<BillDTO> a = new ArrayList<>(); try { a = getBills(3); }
+         * catch (DataException e) { e.printStackTrace(); } for (BillDTO b : a)
+         * { System.out.println(b.getBillId()); }*
+         */
         try {
-            addOrder(new OrderDTO(4, 4, 4, 4));
-        } catch (DataException e) {
+            OrderDTO o = getOrder(15);
+
+            System.out.println(o.getCustomerNo());
+            System.out.println(o.getDate());
+            System.out.println(o.getHeight());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

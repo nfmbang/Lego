@@ -26,7 +26,7 @@ public class orderHistory extends Command {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         ArrayList<BillDTO> bills = FrontController.getHistory(user.getId());
-        session.setAttribute("BillDTO", bills);
+        session.setAttribute("bills", bills);
         return user.getRole() + "page";
     }
 }

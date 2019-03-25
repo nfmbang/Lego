@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public class BillDTO {
 
-    private Map<String, Integer> bill;
+    private Map<String, Integer> bill = new HashMap<>();
     private int billId;
     private OrderDTO order;
 
@@ -21,7 +22,7 @@ public class BillDTO {
         this.order = order;
     }
 
-    public void setBill() {
+    public void calcBill() {
         bill = LogicFacade.calculateBill(order);
     }
 
