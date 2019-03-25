@@ -9,6 +9,7 @@ import Logic.BillDTO;
 import Logic.OrderDTO;
 import Logic.LoginSampleException;
 import Logic.User;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -34,11 +35,11 @@ public class Controller {
         DataMapper.addOrder(order);
     }
 
-    public void addBill(BillDTO bill) {
+    public void addBill(BillDTO bill) throws DataException {
         DataMapper.addBill(bill);
     }
 
-    public BillDTO[] getBills(int customerId) {
+    public ArrayList<BillDTO> getBills(int customerId) throws DataException {
         return DataMapper.getBills(customerId);
     }
 

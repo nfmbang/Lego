@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import Logic.LogicFacade;
 import Logic.OrderDTO;
 import Logic.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -58,7 +59,7 @@ public class FrontController extends HttpServlet {
         LogicFacade.addOrder(order);
     }
 
-    static BillDTO[] getHistory(int id) {
+    static ArrayList<BillDTO> getHistory(int id) {
         return LogicFacade.getHistory(id);
     }
 

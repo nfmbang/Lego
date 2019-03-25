@@ -3,6 +3,7 @@ package Logic;
 import Data.Controller;
 import Data.DataException;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * LogicFace is the controller fro the logic layer. Manages interactions between
@@ -36,11 +37,11 @@ public class LogicFacade {
         return Bill.calculateBill(order);
     }
 
-    public static void addBill(BillDTO bill) {
+    public static void addBill(BillDTO bill) throws DataException {
         dataController.addBill(bill);
     }
 
-    public static BillDTO[] getHistory(int customerId) {
+    public static ArrayList<BillDTO> getHistory(int customerId) throws DataException {
         return dataController.getBills(customerId);
     }
 

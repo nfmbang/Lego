@@ -9,6 +9,7 @@ import Logic.BillDTO;
 import Logic.LoginSampleException;
 import Logic.OrderDTO;
 import Logic.User;
+import java.util.ArrayList;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,7 @@ public class orderHistory extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        BillDTO[] bills = FrontController.getHistory(user.getId());
+        ArrayList<BillDTO> bills = FrontController.getHistory(user.getId());
         session.setAttribute("BillDTO", bills);
         return user.getRole() + "page";
     }

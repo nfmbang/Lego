@@ -18,8 +18,11 @@ public class BillDTO {
     private OrderDTO order;
 
     public BillDTO(OrderDTO order) {
-        this.bill = LogicFacade.calculateBill(order);
         this.order = order;
+    }
+
+    public void setBill() {
+        bill = LogicFacade.calculateBill(order);
     }
 
     public Map<String, Integer> getBill() {
@@ -46,4 +49,27 @@ public class BillDTO {
         this.order = order;
     }
 
+    public void setA(int a) {
+        bill.put("2x4", a);
+    }
+
+    public void setB(int b) {
+        bill.put("2x2", b);
+    }
+
+    public void setC(int c) {
+        bill.put("2x1", c);
+    }
+
+    public int getA() {
+        return bill.get("2x4");
+    }
+
+    public int getB() {
+        return bill.get("2x2");
+    }
+
+    public int getC() {
+        return bill.get("2x1");
+    }
 }

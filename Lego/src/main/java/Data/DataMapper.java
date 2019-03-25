@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -88,8 +90,63 @@ class DataMapper {
         }
     }
 
-    static BillDTO[] getBills(int customerId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    ArrayList<OrderDTO> getOrders(int customerId) throws DataException {
+        ArrayList<OrderDTO> history = new ArrayList<>();
+        int customerNo, length, width, height, orderId;
+        Date date;
+        OrderDTO order;
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM orders "
+                    + "WHERE customerId=?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, customerId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                customerNo = rs.getInt("customerId");
+                length = rs.getInt("length");
+                width = rs.getInt("width");
+                height = rs.getInt("height");
+                date = rs.getDate("date");
+                orderId = rs.getInt("orderId");
+                order = new OrderDTO(customerNo, length, width, height);
+                order.setOrderId(orderId);
+                order.setDate(date);
+                history.add(order);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new DataException(ex.getMessage());
+        }
+        return history;
+    }
+
+    static ArrayList<BillDTO> getBills(int customerId) throws DataException {
+        BillDTO bill = new BillDTO(null);
+        ArrayList<BillDTO> bills = new ArrayList<>();
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT bills.* FROM orders join bills "
+                    + "on orders.customerId=bills.customerId "
+                    + "WHERE customerId = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, customerId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                bill.setBillId(rs.getInt("billId"));
+                bill.setA(rs.getInt("2x4"));
+                bill.setB(rs.getInt("2x2"));
+                bill.setC(rs.getInt("1x2"));
+                bill.setOrder(getOrder(rs.getInt("orderId")));
+                bills.add(bill);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new DataException(ex.getMessage());
+        }
+        return bills;
     }
 
     public static void main(String[] args) {
