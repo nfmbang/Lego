@@ -18,7 +18,7 @@ public class LogicFacade {
         return dataController.login(email, password);
     }
 
-    public User createUser(String email, String password) throws LoginSampleException {
+    public static User createUser(String email, String password) throws LoginSampleException {
         User user = new User(email, password, "customer");
         dataController.createUser(user);
         return user;

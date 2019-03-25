@@ -21,12 +21,11 @@ import javax.servlet.http.HttpSession;
 public class orderHistory extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        BillDTO[] bills = Logic.LogicFacade.getHistory(user.getId());
-
+        BillDTO[] bills = FrontController.getHistory(user.getId());
+        session.setAttribute("BillDTO", bills);
         return user.getRole() + "page";
     }
-
 }

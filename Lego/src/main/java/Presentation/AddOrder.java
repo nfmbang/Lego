@@ -28,7 +28,7 @@ public class AddOrder extends Command {
             int width = Integer.parseInt(request.getParameter("width"));
             int height = Integer.parseInt(request.getParameter("height"));
             User user = (User) session.getAttribute("user");
-            LogicFacade.addOrder(new OrderDTO(user.getId(), lenght, width, height));
+            FrontController.addOrder(new OrderDTO(user.getId(), lenght, width, height));
             return user.getRole() + "page";
         } catch (DataException e) {
             throw new LoginSampleException(e.getMessage());

@@ -5,6 +5,8 @@
  */
 package Presentation;
 
+import Data.DataException;
+import Logic.BillDTO;
 import Logic.LoginSampleException;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,6 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Logic.LogicFacade;
+import Logic.OrderDTO;
+import Logic.User;
 
 /**
  *
@@ -39,6 +44,22 @@ public class FrontController extends HttpServlet {
             request.setAttribute("error", ex.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    public static User login(String email, String pw) throws LoginSampleException {
+        return LogicFacade.login(email, pw);
+    }
+
+    public static User createUser(String email, String password1) throws LoginSampleException {
+        return LogicFacade.createUser(email, password1);
+    }
+
+    static void addOrder(OrderDTO order) throws DataException {
+        LogicFacade.addOrder(order);
+    }
+
+    static BillDTO[] getHistory(int id) {
+        return LogicFacade.getHistory(id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
