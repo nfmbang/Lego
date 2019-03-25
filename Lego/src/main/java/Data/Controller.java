@@ -13,11 +13,21 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
+ * Controller fro the database layer. Handles communication between the data
+ * layer and the logic layer.
  *
  * @author nille
  */
 public class Controller {
 
+    /**
+     * Passes information the the user mapper about the login attempt.
+     *
+     * @param email
+     * @param password
+     * @return
+     * @throws LoginSampleException
+     */
     public User login(String email, String password) throws LoginSampleException {
         User user = UserMapper.login(email, password);
         return user;

@@ -15,6 +15,12 @@ import java.sql.Statement;
  */
 class UserMapper {
 
+    /**
+     * Creates a new user based on the information provided by the user.
+     *
+     * @param user
+     * @throws LoginSampleException
+     */
     static void createUser(User user) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -33,6 +39,14 @@ class UserMapper {
         }
     }
 
+    /**
+     * Checks provided login information against stored information
+     *
+     * @param email
+     * @param password
+     * @return
+     * @throws LoginSampleException
+     */
     static User login(String email, String password) throws LoginSampleException {
         try {
             Connection con = Connector.connection();

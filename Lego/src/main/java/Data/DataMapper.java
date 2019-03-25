@@ -21,6 +21,12 @@ import java.util.ArrayList;
  */
 class DataMapper {
 
+    /**
+     * Adds an order to the database
+     *
+     * @param order
+     * @throws DataException
+     */
     static void addOrder(OrderDTO order) throws DataException {
         try {
             Connection con = Connector.connection();
@@ -45,6 +51,13 @@ class DataMapper {
         }
     }
 
+    /**
+     * fetches an order from the database.
+     *
+     * @param orderId
+     * @return
+     * @throws DataException
+     */
     static OrderDTO getOrder(int orderId) throws DataException {
         try {
             Connection con = Connector.connection();
@@ -72,6 +85,12 @@ class DataMapper {
         }
     }
 
+    /**
+     * Adds a new bill to the database.
+     *
+     * @param bill
+     * @throws DataException
+     */
     static void addBill(BillDTO bill) throws DataException {
         try {
             Connection con = Connector.connection();
@@ -89,6 +108,13 @@ class DataMapper {
         }
     }
 
+    /**
+     * Fetches all orders by that customer.
+     *
+     * @param customerId
+     * @return ArrayList of Orders
+     * @throws DataException
+     */
     ArrayList<OrderDTO> getOrders(int customerId) throws DataException {
         ArrayList<OrderDTO> history = new ArrayList<>();
         int customerNo, length, width, height, orderId;
@@ -121,6 +147,13 @@ class DataMapper {
         return history;
     }
 
+    /**
+     * Returns all bills connected to orders by the customer.
+     *
+     * @param customerId
+     * @return
+     * @throws DataException
+     */
     static ArrayList<BillDTO> getBills(int customerId) throws DataException {
 
         ArrayList<BillDTO> bills = new ArrayList<>();
@@ -147,20 +180,6 @@ class DataMapper {
             throw new DataException(ex.getMessage());
         }
         return bills;
-    }
-
-    public static void main(String[] args) {
-        try {
-            ArrayList<BillDTO> bills = getBills(4);
-            int i = 0;
-            for (BillDTO b : bills) {
-                System.out.println(i + " " + b.getOrder().getOrderId());
-                i++;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }
