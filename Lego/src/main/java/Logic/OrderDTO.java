@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Logic;
 
 //import java.sql.Date;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -23,7 +23,6 @@ public class OrderDTO {
         this.height = height;
         this.width = width;
         this.length = length;
-        date = new Date();
         //this.desiredBricks = desiredBricks;
     }
 

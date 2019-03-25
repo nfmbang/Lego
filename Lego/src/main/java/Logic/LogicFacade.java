@@ -2,12 +2,13 @@ package Logic;
 
 import Data.Controller;
 import Data.DataException;
-import Domain.OrderDTO;
+import java.util.Map;
 
 /**
- * The purpose of LogicFacade is to...
+ * LogicFace is the controller fro the logic layer. Manages interactions between
+ * logic -> data and logic -> presentation
  *
- * @author kasper
+ * @author Niels
  */
 public class LogicFacade {
 
@@ -30,4 +31,17 @@ public class LogicFacade {
     public static OrderDTO getOrder(int orderId) throws DataException {
         return dataController.getOrder(orderId);
     }
+
+    public static Map<String, Integer> calculateBill(OrderDTO order) {
+        return Bill.calculateBill(order);
+    }
+
+    public static void addBill(BillDTO bill) {
+        dataController.addBill(bill);
+    }
+
+    public static BillDTO[] getHistory(int customerId) {
+        return dataController.getBills(customerId);
+    }
+
 }

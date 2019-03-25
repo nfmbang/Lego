@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Logic;
 
-import java.awt.BorderLayout;
+import Logic.OrderDTO;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +22,7 @@ public class Bill {
      * @param order
      * @return Bill of Materials
      */
-    public Map<String, Integer> calculateBill(OrderDTO order) {
+    public static Map<String, Integer> calculateBill(OrderDTO order) {
         Map<String, Integer> bill = new HashMap();
         // String[] bricks = order.getBricks();
 

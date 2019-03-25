@@ -5,9 +5,11 @@
  */
 package Data;
 
-import Domain.OrderDTO;
+import Logic.BillDTO;
+import Logic.OrderDTO;
 import Logic.LoginSampleException;
 import Logic.User;
+import java.util.Map;
 
 /**
  *
@@ -30,6 +32,14 @@ public class Controller {
 
     public void addOrder(OrderDTO order) throws DataException {
         DataMapper.addOrder(order);
+    }
+
+    public void addBill(BillDTO bill) {
+        DataMapper.addBill(bill);
+    }
+
+    public BillDTO[] getBills(int customerId) {
+        return DataMapper.getBills(customerId);
     }
 
 }

@@ -12,11 +12,18 @@
         <title>Customer home page</title>
     </head>
     <body>
-        <h1>Hello <%=request.getParameter( "email" )%> </h1>
-        
-        <form name="shop" action="FrontController" method="POST">
-            <input type="hidden" name="command" value="shop">           
-            <input  type="submit" value="shop">
-        </form>
+        <center>
+            <h1>Hello <%=request.getParameter( "email" )%> <br> Welcome to our site! </h1>
+
+            <jsp:include page="shop.jsp">
+                <jsp:param name="shop" value=""/>
+            </jsp:include>           
+            
+                
+            <jsp:include page="BoM.jsp">
+                <jsp:param name="BoM" value=""/>
+            </jsp:include>                
+                
+        </center
     </body>
 </html>

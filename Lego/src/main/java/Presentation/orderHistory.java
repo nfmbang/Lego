@@ -5,9 +5,11 @@
  */
 package Presentation;
 
-import Logic.LogicFacade;
+import Logic.BillDTO;
 import Logic.LoginSampleException;
+import Logic.OrderDTO;
 import Logic.User;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ public class orderHistory extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        BillDTO[] bills = Logic.LogicFacade.getHistory(user.getId());
 
         return user.getRole() + "page";
     }
