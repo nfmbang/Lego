@@ -36,21 +36,20 @@
                </tr>
                 <% for(BillDTO b: bills){%>
                <tr>
-                   <%OrderDTO o = b.getOrder();%>
-                   <td>
-                       Order id:<%=o.getOrderId()%><br>
-                       Date:<%=o.getDate()%><br>
-                       Dimensions:(x,y,z)<%=o.getLength()%>,<%=o.getWidth()%>,<%=o.getHeight()%>
-                   </td>
-                   <td>
+                    <%OrderDTO o = b.getOrder();%>
+                    <td>
+                        Order id:<%=o.getOrderId()%><br>
+                        Date:<%=o.getDate()%><br>
+                        Dim(x,y,z):<%=o.getLength()%>,<%=o.getWidth()%>,<%=o.getHeight()%>
+                    </td>
+                    <td>
                        Bill id:<%=b.getBillId()%><br>
                        2x4:<%=b.getA()%><br>
                        2x2:<%=b.getB()%><br>
                        2x1:<%=b.getC()%>
-                   </td>
-                    
+                    </td>
                </tr>
-               <%}%>
+                <%}%>
             </table>
         </form>
             

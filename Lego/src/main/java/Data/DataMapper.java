@@ -6,7 +6,6 @@
 package Data;
 
 import Logic.BillDTO;
-import Logic.LogicFacade;
 import Logic.OrderDTO;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,8 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -96,7 +93,6 @@ class DataMapper {
         ArrayList<OrderDTO> history = new ArrayList<>();
         int customerNo, length, width, height, orderId;
         Date date;
-        OrderDTO order;
 
         try {
             Connection con = Connector.connection();
@@ -107,6 +103,7 @@ class DataMapper {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                OrderDTO order;
                 customerNo = rs.getInt("customerId");
                 length = rs.getInt("length");
                 width = rs.getInt("width");
@@ -125,7 +122,7 @@ class DataMapper {
     }
 
     static ArrayList<BillDTO> getBills(int customerId) throws DataException {
-        BillDTO bill = new BillDTO(null);
+
         ArrayList<BillDTO> bills = new ArrayList<>();
 
         try {
@@ -138,6 +135,7 @@ class DataMapper {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                BillDTO bill = new BillDTO(null);
                 bill.setBillId(rs.getInt("billId"));
                 bill.setA(rs.getInt("2x4"));
                 bill.setB(rs.getInt("2x2"));
@@ -152,22 +150,17 @@ class DataMapper {
     }
 
     public static void main(String[] args) {
-
-        /**
-         * ArrayList<BillDTO> a = new ArrayList<>(); try { a = getBills(3); }
-         * catch (DataException e) { e.printStackTrace(); } for (BillDTO b : a)
-         * { System.out.println(b.getBillId()); }*
-         */
         try {
-            OrderDTO o = getOrder(15);
+            ArrayList<BillDTO> bills = getBills(4);
+            int i = 0;
+            for (BillDTO b : bills) {
+                System.out.println(i + " " + b.getOrder().getOrderId());
+                i++;
+            }
 
-            System.out.println(o.getCustomerNo());
-            System.out.println(o.getDate());
-            System.out.println(o.getHeight());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }
